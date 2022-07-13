@@ -1,10 +1,17 @@
 import React from "react";
+import { reviewRemoved } from "./reviewsSlice";
+import { useDispatch } from "react-redux"
 
 function Review({ review }) {
+  const dispatch = useDispatch();
+
+  function handleReviewDelete() {
+    dispatch(reviewRemoved(review.id))
+  }
   return (
     <div>
       <li>{review.comment}</li>
-      <button> Delete Review </button>
+      <button onClick={handleReviewDelete}> Delete Review </button>
     </div>
   );
 }
