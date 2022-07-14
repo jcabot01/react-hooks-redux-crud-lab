@@ -14,13 +14,23 @@ const restaurantsSlice = createSlice({
       });
     },
     restaurantRemoved(state, action) {
-      const index = state.entities.findIndex((restauarant) => restauarant === restauarant.id)
-      state.entities.splice(index, 1);
+      // const index = state.entities.findIndex((restaurant) => restaurant.id === action.payload.id)
+      // state.entities.splice(index, 1);
+      state.entities = state.entities.filter((restaurant) => restaurant.id !== action.payload.id)
+    },
+    restaurantUpdated(state, action) {
+      state.entities.map((restaurant) => {
+        if (restaurant.id === action.payload.id) {
+          return restaurant.name = action.payload.name;
+        } else {
+          return state;
+        }
+      });
     },
   },
 });
 
 //export action creators
-export const { restaurantAdded, restaurantRemoved } = restaurantsSlice.actions;
+export const { restaurantAdded, restaurantRemoved, restaurantUpdated } = restaurantsSlice.actions;
 
 export default restaurantsSlice.reducer;

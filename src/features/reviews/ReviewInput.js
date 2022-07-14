@@ -14,7 +14,7 @@ function ReviewInput({ restaurantId }) {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(reviewAdded({ comment, restaurantId }))
-    //setComment("");
+    setComment("");
   }
   return (
     <form onSubmit={handleSubmit}>

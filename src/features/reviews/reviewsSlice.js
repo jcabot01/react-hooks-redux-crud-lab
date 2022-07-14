@@ -14,10 +14,19 @@ const reviewsSlice = createSlice({
             const index = state.entities.findIndex((review) => review.id === action.payload)
             state.entities.splice(index, 1);
         },
+        reviewUpdated(state, action) {
+            state.entities.map((review) => {
+                if (review.id === action.payload.id) {
+                    return review.comment = action.payload.review;
+                } else {
+                    return state;
+                };
+            });
+        },
     },
 });
 
 //export action creators
-export const { reviewAdded, reviewRemoved } = reviewsSlice.actions;
+export const { reviewAdded, reviewRemoved, reviewUpdated } = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;
